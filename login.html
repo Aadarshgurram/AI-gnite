@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-field {
+            border: 2px solid transparent;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .input-field:focus {
+            border-color: #4f46e5;
+            box-shadow: 0px 4px 10px rgba(79, 70, 229, 0.4);
+            outline: none;
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+            transform: scale(1.05);
+        }
+
+        #email, #password, #login {
+            border-radius: 50px;
+        }
+
+        .links a {
+            color: #ffdf6c;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .links a:hover {
+            color: #ffd700;
+        }
+
+        /* Password input container */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Eye icon styling */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #ccc;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .toggle-password:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-8 rounded-2xl shadow-xl max-w-sm w-full text-center login-card">
+        <h2 class="text-3xl font-bold text-white">Welcome Back</h2>
+        <p class="text-gray-200 mb-6">Sign in to continue learning.</p>
+        
+        <form onsubmit="return loginUser(event)">
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 border rounded-lg input-field" required>
+            
+            <!-- Password Field with Eye Icon -->
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 border rounded-lg input-field pr-10" required>
+                <span class="toggle-password" onclick="togglePassword()">
+                    👁️
+                </span>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white w-full py-3 rounded-lg btn-glow text-lg font-semibold" id="login">
+                Login
+            </button>
+        </form>
+
+        <!-- Forgot Password & Sign Up Links -->
+        <div class="mt-4 links text-gray-200">
+            <a href="forgot-password.html" class="text-sm">Forgot Password?</a>
+            <span class="mx-2">|</span>
+            <a href="signup.html" class="text-sm">Create an Account</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            let passwordField = document.getElementById("password");
+            let icon = document.querySelector(".toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.textContent = "🙈"; // Hide password icon
+            } else {
+                passwordField.type = "password";
+                icon.textContent = "👁️"; // Show password icon
+            }
+        }
+
+        function loginUser(event) {
+            event.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (email && password) {
+                alert("Login Successful!");
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Please enter valid credentials.");
+            }
+        }
+    </script>
+</body>
+</html>

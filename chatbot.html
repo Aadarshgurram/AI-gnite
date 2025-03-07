@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutor Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #e4c1b7, #63afdb, #f1e0aa);
+            font-family: 'Poppins', sans-serif;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: auto;
+            background: linear-gradient(135deg, #ffffff, #f7f7f7);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .chat-container:hover {
+            transform: scale(1.02);
+        }
+        .chatbox {
+            height: 450px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f3f3f3, #ffffff);
+            border: 2px solid #1fbfe2;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .user-message {
+            padding: 12px 16px;
+            border-radius: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            align-self: flex-end;
+            margin: 8px 0;
+            max-width: 80%;
+            word-wrap: break-word;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #userInput {
+            border-radius: 50px;
+            flex-grow: 1;
+        }
+        .action-buttons button {
+            transition: all 0.3s ease;
+        }
+        .action-buttons button:hover {
+            transform: scale(1.1);
+        }
+        #send {
+            border-radius: 50px;
+        }
+        #voice{
+            border-radius: 50%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="chat-container">
+        <h2 class="text-3xl font-bold text-center text-gray-800">AI Tutor Assistant</h2>
+        <div id="chatbox" class="chatbox flex flex-col space-y-3 p-4 mt-4"></div>
+        <div class="mt-4 flex action-buttons">
+            <button onclick="startVoiceInput()" class="bg-green-500 hover:bg-lightgreen-400 text-white px-1 py-1 rounded-lg mr-2 text-lg shadow-lg" id="voice">🎤</button>
+            <input type="text" id="userInput" placeholder="Type your message..." class="p-3 border rounded-full focus:outline-none text-lg shadow-md" onkeypress="handleKeyPress(event)">
+            <button id="send" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full ml-3 text-lg shadow-lg" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            let userInput = document.getElementById("userInput").value.trim();
+            if (userInput === "") return;
+
+            let chatbox = document.getElementById("chatbox");
+            let userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = userInput;
+
+            chatbox.appendChild(userMessage);
+            document.getElementById("userInput").value = "";
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+        function startVoiceInput() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "en-US";
+            recognition.start();
+            recognition.onresult = (event) => {
+                document.getElementById("userInput").value = event.results[0][0].transcript;
+                sendMessage();
+            };
+        }
+        
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Poppins', sans-serif;
+        }
+        .course-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .course-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="p-10 flex flex-col items-center">
+    <!-- Page Header -->
+    <h1 class="text-4xl font-extrabold text-white mb-6 text-center">Explore Our Courses</h1>
+
+    <!-- Course List -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+        <!-- Python Course -->
+        <a href="https://www.w3schools.com/python/default.asp" class="course-card block bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+            <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Python Course" class="w-full rounded-lg mb-4">
+            <h2 class="text-xl font-bold text-gray-800">Python for Beginners</h2>
+            <p class="text-gray-600 text-sm">Start coding with Python from scratch.</p>
+        </a>
+
+        <!-- Java Course -->
+        <a href="https://www.w3schools.com/java/default.asp" class="course-card block bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+            <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg" alt="Java Course" class="w-full rounded-lg mb-4">
+            <h2 class="text-xl font-bold text-gray-800">Java Basics</h2>
+            <p class="text-gray-600 text-sm">Learn the fundamentals of Java programming.</p>
+        </a>
+
+        <!-- AI in Education --><div id="ongoing">
+        <a href="https://www.w3schools.com/ai/default.asp" class="course-card block bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2" >
+            <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg" alt="AI Course" class="w-full rounded-lg mb-4">
+            <h2 class="text-xl font-bold text-gray-800">AI in Education</h2>
+            <p class="text-gray-600 text-sm">Discover how AI is transforming learning.</p>
+        </a></div>
+    </div>
+</body>
+</html>

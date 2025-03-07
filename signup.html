@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #fd8a8a, #ff5964);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signup-card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .signup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .input-field {
+            border: 2px solid transparent;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .input-field:focus {
+            border-color: #ff5f6d;
+            box-shadow: 0px 4px 10px rgba(255, 95, 109, 0.4);
+            outline: none;
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 5px rgba(255, 95, 109, 0.5);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 15px rgba(255, 95, 109, 0.8);
+            transform: scale(1.05);
+        }
+
+        .links a {
+            color: #ffdf6c;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .links a:hover {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-8 rounded-2xl shadow-xl max-w-sm w-full text-center signup-card">
+        <h2 class="text-3xl font-bold text-white">Create Account</h2>
+        <p class="text-gray-200 mb-6">Join us and start learning today.</p>
+        
+        <form onsubmit="return registerUser(event)">
+            <input type="text" id="name" placeholder="Full Name" class="w-full p-3 mb-4 border rounded-lg input-field" required>
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 border rounded-lg input-field" required>
+            <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 border rounded-lg input-field" required>
+            <button type="submit" class="bg-red-500 text-white w-full py-3 rounded-lg btn-glow text-lg font-semibold">
+                Sign Up
+            </button>
+        </form>
+
+        <div class="mt-4 links text-gray-200">
+            <a href="login.html" class="text-sm">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        function registerUser(event) {
+            event.preventDefault();
+            alert("Account created successfully!");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
